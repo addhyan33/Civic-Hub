@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civic Hub - Smart City Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-color-scheme="light">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-content">
+            <div class="city-logo">
+                <div class="logo-icon">🏙️</div>
+                <h1 class="logo-text">Civic Hub</h1>
+                <p class="logo-subtitle">Smart City Platform</p>
+            </div>
+            
+            <div class="loading-stats">
+                <div class="loading-stat">
+                    <div class="stat-value" data-target="2847">0</div>
+                    <div class="stat-label">Reports Processed</div>
+                </div>
+                <div class="loading-stat">
+                    <div class="stat-value" data-target="187">0</div>
+                    <div class="stat-label">Cost Savings ($K)</div>
+                </div>
+                <div class="loading-stat">
+                    <div class="stat-value" data-target="92">0</div>
+                    <div class="stat-label">City Health Score</div>
+                </div>
+            </div>
+            
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="loading-progress-fill"></div>
+                </div>
+                <div class="loading-text" id="loading-text">Initializing Smart City Systems...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Tour Overlay -->
+    <div class="demo-tour hidden" id="demo-tour">
+        <div class="demo-overlay"></div>
+        <div class="demo-content">
+            <div class="demo-step" id="demo-step-content">
+                <h3 id="demo-title">Welcome to Civic Hub</h3>
+                <p id="demo-description">Experience the future of civic engagement with AI-powered issue reporting and real-time analytics.</p>
+                <div class="demo-actions">
+                    <button class="btn btn--secondary" id="skip-tour">Skip Tour</button>
+                    <button class="btn btn--primary" id="next-step">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="app-brand">
+                        <div class="brand-icon">🏙️</div>
+                        <div class="brand-text">
+                            <h1 class="app-title">Civic Hub</h1>
+                            <span class="app-tagline">Smart City Platform</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-center">
+                    <div class="live-stats">
+                        <div class="live-stat">
+                            <span class="live-dot"></span>
+                            <span class="live-value" id="live-reports">2,847</span>
+                            <span class="live-label">Active</span>
+                        </div>
+                        <div class="live-stat">
+                            <span class="live-value">3.2h</span>
+                            <span class="live-label">Avg Response</span>
+                        </div>
+                        <div class="live-stat">
+                            <span class="live-value">4.8★</span>
+                            <span class="live-label">Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn--outline btn--sm" id="demo-mode-btn">
+                        <span class="demo-icon">🎬</span>
+                        Demo Mode
+                    </button>
+                    <div class="role-switcher">
+                        <button id="role-citizen" class="role-btn active" data-role="Citizen">
+                            <span class="role-icon">👤</span>
+                            Citizen
+                        </button>
+                        <button id="role-staff" class="role-btn" data-role="Municipal Staff">
+                            <span class="role-icon">👷</span>
+                            Staff
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Citizen Interface -->
+        <div id="citizen-interface" class="interface-container">
+            <!-- Citizen Dashboard -->
+            <div id="citizen-dashboard" class="view active">
+                <div class="container">
+                    <!-- Hero Section -->
+                    <div class="hero-section">
+                        <div class="hero-content">
+                            <h2 class="hero-title">Welcome, Sarah Chen</h2>
+                            <p class="hero-subtitle">Join 8,934 citizens making our city better through smart reporting</p>
+                            <div class="hero-metrics">
+                                <div class="hero-metric">
+                                    <div class="metric-icon">💰</div>
+                                    <div class="metric-content">
+                                        <div class="metric-value">$187K</div>
+                                        <div class="metric-label">Saved This Year</div>
+                                    </div>
+                                </div>
+                                <div class="hero-metric">
+                                    <div class="metric-icon">🌱</div>
+                                    <div class="metric-content">
+                                        <div class="metric-value">42.3T</div>
+                                        <div class="metric-label">CO₂ Reduced</div>
+                                    </div>
+                                </div>
+                                <div class="hero-metric">
+                                    <div class="metric-icon">⚡</div>
+                                    <div class="metric-content">
+                                        <div class="metric-value">+34%</div>
+                                        <div class="metric-label">Efficiency</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-visual">
+                            <div class="city-visualization">
+                                <div class="city-building building-1"></div>
+                                <div class="city-building building-2"></div>
+                                <div class="city-building building-3"></div>
+                                <div class="city-building building-4"></div>
+                                <div class="connection-lines">
+                                    <div class="connection-line line-1"></div>
+                                    <div class="connection-line line-2"></div>
+                                    <div class="connection-line line-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Personal Stats -->
+                    <div class="personal-dashboard">
+                        <div class="dashboard-card personal-stats">
+                            <h3>Your Impact</h3>
+                            <div class="stats-grid">
+                                <div class="stat-card personal">
+                                    <div class="stat-icon">📋</div>
+                                    <div class="stat-number">3</div>
+                                    <div class="stat-label">Reports Submitted</div>
+                                    <div class="stat-trend">+2 this month</div>
+                                </div>
+                                <div class="stat-card personal">
+                                    <div class="stat-icon">✅</div>
+                                    <div class="stat-number">2</div>
+                                    <div class="stat-label">Issues Resolved</div>
+                                    <div class="stat-trend">98% success rate</div>
+                                </div>
+                                <div class="stat-card personal">
+                                    <div class="stat-icon">⏱️</div>
+                                    <div class="stat-number">2.8h</div>
+                                    <div class="stat-label">Avg Response</div>
+                                    <div class="stat-trend">12% faster</div>
+                                </div>
+                                <div class="stat-card personal">
+                                    <div class="stat-icon">🎯</div>
+                                    <div class="stat-number">94</div>
+                                    <div class="stat-label">Impact Score</div>
+                                    <div class="stat-trend">Top 5%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-card ai-insights">
+                            <h3>AI Insights & Predictions</h3>
+                            <div class="insights-list">
+                                <div class="insight-item">
+                                    <div class="insight-icon">🤖</div>
+                                    <div class="insight-content">
+                                        <div class="insight-title">Predictive Alert</div>
+                                        <div class="insight-description">High probability of pothole formation on Oak Street due to recent weather patterns</div>
+                                        <div class="insight-confidence">89% confidence</div>
+                                    </div>
+                                </div>
+                                <div class="insight-item">
+                                    <div class="insight-icon">📊</div>
+                                    <div class="insight-content">
+                                        <div class="insight-title">Trend Analysis</div>
+                                        <div class="insight-description">Street lighting issues decreased 22% this quarter due to preventive maintenance</div>
+                                        <div class="insight-confidence">Historical data</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Smart Reporting -->
+                    <div class="smart-reporting">
+                        <button class="btn btn--primary btn--large smart-report-btn" id="smart-report-btn">
+                            <div class="btn-content">
+                                <div class="btn-icon">🎯</div>
+                                <div class="btn-text">
+                                    <span class="btn-title">Smart Report Issue</span>
+                                    <span class="btn-subtitle">AI-powered categorization & routing</span>
+                                </div>
+                            </div>
+                            <div class="btn-features">
+                                <span class="feature-tag">📷 Photo Analysis</span>
+                                <span class="feature-tag">🎤 Voice-to-Text</span>
+                                <span class="feature-tag">📍 Auto-Location</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="dashboard-card recent-activity">
+                        <h3>Recent Activity & Updates</h3>
+                        <div class="activity-timeline">
+                            <div class="activity-item resolved">
+                                <div class="activity-marker"></div>
+                                <div class="activity-content">
+                                    <div class="activity-header">
+                                        <div class="activity-title">Trash Issue Resolved</div>
+                                        <div class="activity-time">2h ago</div>
+                                    </div>
+                                    <div class="activity-description">Central Park waste bin issue completed. Thank you for reporting!</div>
+                                    <div class="activity-rating">
+                                        <span>Rate this service:</span>
+                                        <div class="rating-stars">
+                                            <span class="star active">★</span>
+                                            <span class="star active">★</span>
+                                            <span class="star active">★</span>
+                                            <span class="star active">★</span>
+                                            <span class="star active">★</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="activity-item progress">
+                                <div class="activity-marker"></div>
+                                <div class="activity-content">
+                                    <div class="activity-header">
+                                        <div class="activity-title">Streetlight Repair in Progress</div>
+                                        <div class="activity-time">1d ago</div>
+                                    </div>
+                                    <div class="activity-description">Parts ordered, crew scheduled for tomorrow morning</div>
+                                    <div class="progress-indicator">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 65%"></div>
+                                        </div>
+                                        <span class="progress-text">65% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Report Form -->
+            <div id="report-form" class="view">
+                <div class="container">
+                    <div class="form-header">
+                        <button class="back-btn" id="back-to-dashboard">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.42-1.41L7.83 13H20v-2z"/>
+                            </svg>
+                        </button>
+                        <div class="form-title-section">
+                            <h2>Smart Issue Reporting</h2>
+                            <p>AI-powered analysis for faster resolution</p>
+                        </div>
+                    </div>
+                    
+                    <form id="issue-form" class="smart-report-form">
+                        <!-- AI Photo Analysis -->
+                        <div class="form-section highlight">
+                            <label class="form-label">
+                                📷 Smart Photo Analysis
+                                <span class="ai-badge">AI Powered</span>
+                            </label>
+                            <div class="photo-upload enhanced">
+                                <input type="file" id="photo-input" accept="image/*" style="display: none;">
+                                <div class="photo-upload-area" id="photo-upload-area">
+                                    <div class="upload-icon">📷</div>
+                                    <p class="upload-text">Take or upload photo</p>
+                                    <p class="upload-subtitle">AI will automatically detect issue type</p>
+                                </div>
+                                <div class="photo-preview" id="photo-preview" style="display: none;">
+                                    <img id="preview-image" src="" alt="Preview">
+                                    <div class="ai-analysis" id="ai-analysis">
+                                        <div class="analysis-result">
+                                            <span class="analysis-icon">🤖</span>
+                                            <span class="analysis-text">Analyzing image...</span>
+                                            <span class="confidence-score" id="confidence-score"></span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="remove-photo" id="remove-photo">×</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Smart Issue Type -->
+                        <div class="form-section">
+                            <label class="form-label">Issue Type</label>
+                            <select class="form-control enhanced" name="issueType" id="issue-type-select" required>
+                                <option value="">AI will suggest based on photo...</option>
+                                <option value="Pothole">🕳️ Pothole</option>
+                                <option value="Streetlight">💡 Streetlight</option>
+                                <option value="Trash/Garbage">🗑️ Trash/Garbage</option>
+                                <option value="Graffiti">🎨 Graffiti</option>
+                                <option value="Water Leak">💧 Water Leak</option>
+                                <option value="Road Damage">🛣️ Road Damage</option>
+                                <option value="Noise Complaint">🔊 Noise Complaint</option>
+                                <option value="Other">➕ Other</option>
+                            </select>
+                            <div class="ai-suggestions" id="ai-suggestions" style="display: none;">
+                                <div class="suggestion-header">🤖 AI Suggestions:</div>
+                                <div class="suggestion-list" id="suggestion-list"></div>
+                            </div>
+                        </div>
+
+                        <!-- Smart Location -->
+                        <div class="form-section">
+                            <label class="form-label">
+                                📍 Precise Location
+                                <span class="accuracy-badge" id="location-accuracy">±3m accuracy</span>
+                            </label>
+                            <div class="location-section enhanced">
+                                <button type="button" class="btn btn--primary detect-location" id="detect-location">
+                                    <svg viewBox="0 0 24 24" width="16" height="16">
+                                        <path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0 0 13 3.06V1h-2v2.06A8.994 8.994 0 0 0 3.06 11H1v2h2.06A8.994 8.994 0 0 0 11 20.94V23h2v-2.06A8.994 8.994 0 0 0 20.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+                                    </svg>
+                                    Auto-Detect Location
+                                </button>
+                                <div class="map-container enhanced" id="map-container">
+                                    <div class="smart-map">
+                                        <div class="map-layers">
+                                            <div class="traffic-layer"></div>
+                                            <div class="density-layer"></div>
+                                        </div>
+                                        <div class="map-pin smart"></div>
+                                        <div class="location-info" id="location-info">
+                                            <div class="location-text" id="location-text">Tap to detect location</div>
+                                            <div class="location-details" id="location-details"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Enhanced Description -->
+                        <div class="form-section">
+                            <label class="form-label">Detailed Description</label>
+                            <textarea class="form-control enhanced" name="description" rows="4" placeholder="Describe the issue... (AI will analyze for urgency and routing)" required></textarea>
+                            <div class="description-insights" id="description-insights">
+                                <div class="insight">💡 Tip: Include time of day and weather conditions for better analysis</div>
+                            </div>
+                        </div>
+
+                        <!-- Advanced Voice Input -->
+                        <div class="form-section">
+                            <label class="form-label">
+                                🎤 Voice Description
+                                <span class="ai-badge">Speech-to-Text</span>
+                            </label>
+                            <div class="voice-recorder enhanced">
+                                <button type="button" class="voice-btn" id="voice-btn">
+                                    <svg id="mic-icon" viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="currentColor" d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>
+                                    </svg>
+                                    <span id="voice-status">Record Voice Description</span>
+                                </button>
+                                <div class="voice-features">
+                                    <span class="voice-feature">🌐 Multi-language</span>
+                                    <span class="voice-feature">🎯 Context analysis</span>
+                                    <span class="voice-feature">📝 Auto-transcription</span>
+                                </div>
+                                <div class="voice-playback" id="voice-playback" style="display: none;">
+                                    <button type="button" class="play-btn" id="play-btn">
+                                        <svg viewBox="0 0 24 24" width="20" height="20">
+                                            <path fill="currentColor" d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </button>
+                                    <div class="voice-waveform"></div>
+                                    <span class="voice-duration">0:05</span>
+                                    <div class="voice-transcript" id="voice-transcript">
+                                        "There's a large pothole causing damage to vehicles..."
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Priority Assessment -->
+                        <div class="form-section">
+                            <label class="form-label">AI Priority Assessment</label>
+                            <div class="priority-display" id="priority-display">
+                                <div class="priority-score">
+                                    <div class="score-circle">
+                                        <div class="score-value" id="urgency-score">7.8</div>
+                                        <div class="score-label">Urgency</div>
+                                    </div>
+                                    <div class="priority-factors">
+                                        <div class="factor">🚦 Traffic Impact: High</div>
+                                        <div class="factor">👥 Public Safety: Medium</div>
+                                        <div class="factor">💰 Cost Impact: Medium</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions enhanced">
+                            <button type="button" class="btn btn--secondary" id="cancel-report">Cancel</button>
+                            <button type="submit" class="btn btn--primary btn--large">
+                                <span class="btn-text">Submit Smart Report</span>
+                                <div class="btn-spinner" style="display: none;"></div>
+                                <div class="btn-features">
+                                    <span class="feature">⚡ Instant routing</span>
+                                    <span class="feature">🎯 AI categorization</span>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Enhanced My Reports -->
+            <div id="my-reports" class="view">
+                <div class="container">
+                    <div class="reports-header">
+                        <h2>My Reports & Impact</h2>
+                        <div class="reports-stats">
+                            <div class="stat">
+                                <span class="stat-value">3</span>
+                                <span class="stat-label">Total</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">2</span>
+                                <span class="stat-label">Resolved</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">2.8h</span>
+                                <span class="stat-label">Avg Time</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reports-list enhanced" id="citizen-reports-list">
+                        <!-- Reports will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enhanced Municipal Staff Interface -->
+        <div id="staff-interface" class="interface-container">
+            <div class="container">
+                <!-- Command Center Dashboard -->
+                <div class="command-center">
+                    <div class="dashboard-header">
+                        <div class="header-left">
+                            <h2>Municipal Command Center</h2>
+                            <div class="real-time-indicator">
+                                <span class="pulse-dot"></span>
+                                <span>Real-time monitoring active</span>
+                            </div>
+                        </div>
+                        <div class="header-right">
+                            <button class="btn btn--outline" id="export-data">
+                                📊 Export Analytics
+                            </button>
+                            <button class="btn btn--primary" id="auto-demo">
+                                🎬 Auto Demo
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- KPI Dashboard -->
+                    <div class="kpi-dashboard">
+                        <div class="kpi-card primary">
+                            <div class="kpi-header">
+                                <div class="kpi-icon">📊</div>
+                                <div class="kpi-info">
+                                    <div class="kpi-title">City Health Score</div>
+                                    <div class="kpi-trend">+2.3% this week</div>
+                                </div>
+                            </div>
+                            <div class="kpi-value">92</div>
+                            <div class="kpi-chart">
+                                <canvas id="health-score-chart" width="100" height="30"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card success">
+                            <div class="kpi-header">
+                                <div class="kpi-icon">⚡</div>
+                                <div class="kpi-info">
+                                    <div class="kpi-title">Avg Response Time</div>
+                                    <div class="kpi-trend">-15% improvement</div>
+                                </div>
+                            </div>
+                            <div class="kpi-value">3.2<span class="kpi-unit">h</span></div>
+                            <div class="kpi-detail">Target: 4.0h</div>
+                        </div>
+
+                        <div class="kpi-card warning">
+                            <div class="kpi-header">
+                                <div class="kpi-icon">💰</div>
+                                <div class="kpi-info">
+                                    <div class="kpi-title">Cost Savings</div>
+                                    <div class="kpi-trend">$187.5K this year</div>
+                                </div>
+                            </div>
+                            <div class="kpi-value">+34<span class="kpi-unit">%</span></div>
+                            <div class="kpi-detail">ROI: 420%</div>
+                        </div>
+
+                        <div class="kpi-card info">
+                            <div class="kpi-header">
+                                <div class="kpi-icon">⭐</div>
+                                <div class="kpi-info">
+                                    <div class="kpi-title">Satisfaction</div>
+                                    <div class="kpi-trend">4.8/5 average rating</div>
+                                </div>
+                            </div>
+                            <div class="kpi-value">96<span class="kpi-unit">%</span></div>
+                            <div class="kpi-detail">8,934 responses</div>
+                        </div>
+                    </div>
+
+                    <!-- Analytics Grid -->
+                    <div class="analytics-grid">
+                        <!-- Department Performance -->
+                        <div class="analytics-card">
+                            <div class="card-header">
+                                <h3>Department Performance</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn--sm btn--outline">📈 Details</button>
+                                </div>
+                            </div>
+                            <div class="chart-container" style="position: relative; height: 300px;">
+                                <canvas id="department-chart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Issue Trends -->
+                        <div class="analytics-card">
+                            <div class="card-header">
+                                <h3>Issue Resolution Trends</h3>
+                                <div class="trend-indicators">
+                                    <span class="trend-up">📈 +12% Faster</span>
+                                </div>
+                            </div>
+                            <div class="chart-container" style="position: relative; height: 300px;">
+                                <canvas id="trends-chart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Geographic Heat Map -->
+                        <div class="analytics-card wide">
+                            <div class="card-header">
+                                <h3>Issue Distribution Heat Map</h3>
+                                <div class="map-controls">
+                                    <button class="map-control active">All Issues</button>
+                                    <button class="map-control">High Priority</button>
+                                    <button class="map-control">Resolved</button>
+                                </div>
+                            </div>
+                            <div class="heatmap-container">
+                                <div class="city-heatmap">
+                                    <div class="district downtown high-density">
+                                        <div class="district-label">Downtown</div>
+                                        <div class="issue-count">42</div>
+                                    </div>
+                                    <div class="district midtown medium-density">
+                                        <div class="district-label">Midtown</div>
+                                        <div class="issue-count">28</div>
+                                    </div>
+                                    <div class="district uptown low-density">
+                                        <div class="district-label">Uptown</div>
+                                        <div class="issue-count">15</div>
+                                    </div>
+                                    <div class="district financial medium-density">
+                                        <div class="district-label">Financial</div>
+                                        <div class="issue-count">31</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Insights -->
+                        <div class="analytics-card">
+                            <div class="card-header">
+                                <h3>🤖 AI Insights & Predictions</h3>
+                            </div>
+                            <div class="ai-insights-list">
+                                <div class="ai-insight predictive">
+                                    <div class="insight-icon">🔮</div>
+                                    <div class="insight-content">
+                                        <div class="insight-title">Predictive Alert</div>
+                                        <div class="insight-text">23 potential issues identified for next week based on weather patterns</div>
+                                        <div class="insight-confidence">91% confidence</div>
+                                    </div>
+                                </div>
+                                <div class="ai-insight optimization">
+                                    <div class="insight-icon">⚡</div>
+                                    <div class="insight-content">
+                                        <div class="insight-title">Route Optimization</div>
+                                        <div class="insight-text">Recommended staff routing could save 2.3 hours daily</div>
+                                        <div class="insight-action">
+                                            <button class="btn btn--sm btn--primary">Apply</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ai-insight anomaly">
+                                    <div class="insight-icon">⚠️</div>
+                                    <div class="insight-content">
+                                        <div class="insight-title">Anomaly Detection</div>
+                                        <div class="insight-text">Unusual spike in water leak reports in Financial district</div>
+                                        <div class="insight-action">
+                                            <button class="btn btn--sm btn--outline">Investigate</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reports Management -->
+                    <div class="reports-management enhanced">
+                        <div class="management-header">
+                            <h3>Advanced Report Management</h3>
+                            <div class="management-controls">
+                                <div class="filter-controls">
+                                    <select id="status-filter" class="form-control">
+                                        <option value="">All Statuses</option>
+                                        <option value="Submitted">🔄 Submitted</option>
+                                        <option value="In Progress">⚡ In Progress</option>
+                                        <option value="Emergency Response">🚨 Emergency</option>
+                                        <option value="Resolved">✅ Resolved</option>
+                                    </select>
+                                    <select id="priority-filter" class="form-control">
+                                        <option value="">All Priorities</option>
+                                        <option value="Critical">🔴 Critical</option>
+                                        <option value="High">🟡 High</option>
+                                        <option value="Medium">🟠 Medium</option>
+                                        <option value="Low">🟢 Low</option>
+                                    </select>
+                                    <select id="department-filter" class="form-control">
+                                        <option value="">All Departments</option>
+                                        <option value="Public Works">🏗️ Public Works</option>
+                                        <option value="Water Department">💧 Water Department</option>
+                                        <option value="Electrical Services">⚡ Electrical</option>
+                                        <option value="Sanitation">🗑️ Sanitation</option>
+                                        <option value="Parks & Recreation">🌳 Parks & Rec</option>
+                                    </select>
+                                </div>
+                                <div class="bulk-actions">
+                                    <button class="btn btn--outline" id="bulk-assign">👥 Bulk Assign</button>
+                                    <button class="btn btn--outline" id="export-reports">📋 Export</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="staff-reports-list" id="staff-reports-list">
+                            <!-- Reports will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Enhanced Bottom Navigation -->
+    <nav class="bottom-nav enhanced" id="bottom-nav">
+        <button class="nav-item active" data-view="citizen-dashboard">
+            <div class="nav-icon">🏠</div>
+            <span class="nav-label">Home</span>
+            <div class="nav-indicator"></div>
+        </button>
+        <button class="nav-item" data-view="report-form">
+            <div class="nav-icon">🎯</div>
+            <span class="nav-label">Smart Report</span>
+            <div class="nav-indicator"></div>
+        </button>
+        <button class="nav-item" data-view="my-reports">
+            <div class="nav-icon">📊</div>
+            <span class="nav-label">My Reports</span>
+            <div class="nav-indicator"></div>
+        </button>
+        <button class="nav-item" id="analytics-nav">
+            <div class="nav-icon">📈</div>
+            <span class="nav-label">Analytics</span>
+            <div class="nav-indicator"></div>
+        </button>
+    </nav>
+
+    <!-- Enhanced Toast System -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Enhanced Modal System -->
+    <div class="modal hidden" id="report-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content enhanced">
+            <div class="modal-header">
+                <h3 id="modal-title">Report Details</h3>
+                <button class="modal-close" id="modal-close">×</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
