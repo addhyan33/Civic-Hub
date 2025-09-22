@@ -53,7 +53,7 @@ const adminData = {
       "type": "Pothole",
       "description": "Large pothole on Main Street near the downtown intersection causing significant vehicle damage and creating safety hazards for cyclists and pedestrians. The hole is approximately 2 feet wide and 8 inches deep. Multiple cars have hit it today causing tire damage and alignment issues.",
       "location": {
-        "address": "Main Street & 1st Avenue, Downtown",
+        "address": "293J+RH8, Canary Hill Rd, near Hi-tech nursery, Dipugarha, Hazaribagh, Jharkhand 825301",
         "coordinates": [40.7128, -74.0060],
         "zipCode": "10001",
         "district": "Downtown",
@@ -102,7 +102,7 @@ const adminData = {
       "type": "Streetlight",
       "description": "Broken streetlight at the intersection making it very dangerous for pedestrians crossing at night. The light has been out for over a week creating safety hazards for both pedestrians and drivers. Several near-miss incidents have been reported by neighbors.",
       "location": {
-        "address": "Oak Avenue & 2nd Street",
+        "address": "296F+XW7, Sourav Nagar, Dipugarha, Hazaribagh, Jharkhand 825301",
         "coordinates": [40.7589, -73.9851],
         "zipCode": "10002",
         "district": "Midtown",
