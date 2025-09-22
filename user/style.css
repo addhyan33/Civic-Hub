@@ -329,7 +329,7 @@ h6 {
   margin: 0;
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
-  color: var(--color-text);
+  color: rgb(45 218 255);
   letter-spacing: var(--letter-spacing-tight);
 }
 
@@ -865,7 +865,7 @@ select.form-control {
 .demo-content {
   position: relative;
   z-index: 9999;
-  background: var(--color-surface);
+  background: rgb(4 4 4);
   border-radius: var(--radius-lg);
   padding: var(--space-32);
   max-width: 500px;
@@ -1023,7 +1023,7 @@ select.form-control {
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-16);
-  color: var(--color-text);
+  color: rgb(75 223 255);;
 }
 
 .hero-subtitle {
@@ -1130,7 +1130,7 @@ select.form-control {
 
 .dashboard-card h3 {
   margin-bottom: var(--space-20);
-  color: var(--color-text);
+  color: rgb(75 223 255);;
   display: flex;
   align-items: center;
   gap: var(--space-8);
@@ -1143,7 +1143,7 @@ select.form-control {
 }
 
 .stat-card.personal {
-  background: var(--color-bg-2);
+  background: rgb(0 0 0 / 15%);
   border: 1px solid var(--color-card-border);
   border-radius: var(--radius-base);
   padding: var(--space-16);
@@ -1979,7 +1979,7 @@ select.form-control {
 /* Enhanced Report Cards */
 .reports-list.enhanced .report-card,
 .staff-reports-list .report-card {
-  background: rgba(0, 0, 2, 0.1);
+  background: rgba(0, 0, 2, 1);
   border: 1px solid var(--color-card-border);
   border-radius: var(--radius-lg);
   padding: var(--space-20);
