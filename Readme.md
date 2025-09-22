@@ -4,18 +4,18 @@ This README provides an overview of the project, including team details, relevan
 
 ## Team Details
 
-**Team Name:** TEAM_NAME_HERE
+**Team Name:** BOLTZMANN BRAINS 
 
-**Team Leader:** [@USERNAME](https://github.com/USERNAME)
+**Team Leader:** [MANYA MENDIRATTA](https://github.com/bitsofmanya)
 
 **Team Members:**
 
-- **MEMBER_1** - ROLL_NUMBER - [@USERNAME](https://github.com/USERNAME)
-- **MEMBER_2** - ROLL_NUMBER - [@USERNAME](https://github.com/USERNAME)
-- **MEMBER_3** - ROLL_NUMBER - [@USERNAME](https://github.com/USERNAME)
-- **MEMBER_4** - ROLL_NUMBER - [@USERNAME](https://github.com/USERNAME)
-- **MEMBER_5** - ROLL_NUMBER - [@USERNAME](https://github.com/USERNAME)
-- **MEMBER_6** - ROLL_NUMBER - [@USERNAME](https://github.com/USERNAME)
+- **MANYA MENDIRATTA** - ROLL_NUMBER -2025UIT3156 [@USERNAME](https://github.com/bitsofmanya)
+- **ASHIRVAD DWIVEDI** - ROLL_NUMBER -2025UME4153 [@USERNAME](https://github.com/asucodes)
+- **ADDHYAN MISHRA** - ROLL_NUMBER -2025UIT3133 [@USERNAME](https://github.com/addhyan33)
+- **KRISHNA BHARADWAJ** - ROLL_NUMBER -2025UIT3157 [@USERNAME](https://github.com/bhardwajkrishna2106-cell)
+- **TANISH MALHOTRA** - ROLL_NUMBER -2025UIT3340 [@USERNAME](https://github.com/ImTanish906)
+- **SURYANSH SINGH** - ROLL_NUMBER -2025UCS1672 [@USERNAME](https://github.com/suryansh1807)
 
 ## Project Links
 
