@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipal Administration Dashboard - Civic Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Professional Header -->
+    <header class="admin-header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="municipal-logo">
+                    <span class="logo-icon">🏛️</span>
+                    <div class="logo-text">
+                        <h1>Municipal Administration</h1>
+                        <p>Civic Hub Command Center</p>
+                    </div>
+                </div>
+                <div class="system-status">
+                    <div class="status-indicator online"></div>
+                    <span>System Operational</span>
+                </div>
+            </div>
+            <div class="header-center">
+                <div class="realtime-metrics-bar">
+                    <div class="metric-item critical">
+                        <div class="metric-icon">🚨</div>
+                        <div class="metric-value" id="critical-count">3</div>
+                        <div class="metric-label">Critical</div>
+                    </div>
+                    <div class="metric-item pending">
+                        <div class="metric-icon">📋</div>
+                        <div class="metric-value" id="pending-count">89</div>
+                        <div class="metric-label">Pending</div>
+                    </div>
+                    <div class="metric-item resolved">
+                        <div class="metric-icon">✅</div>
+                        <div class="metric-value" id="resolved-today">23</div>
+                        <div class="metric-label">Resolved Today</div>
+                    </div>
+                    <div class="metric-item response-time">
+                        <div class="metric-icon">⚡</div>
+                        <div class="metric-value" id="avg-response">3.2h</div>
+                        <div class="metric-label">Avg Response</div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="notification-center">
+                    <button class="notification-btn" id="notifications-btn">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                        </svg>
+                        <span class="notification-badge">5</span>
+                    </button>
+                </div>
+                <div class="admin-profile">
+                    <div class="profile-info">
+                        <div class="profile-name">Maria Gonzalez</div>
+                        <div class="profile-role">Operations Manager</div>
+                    </div>
+                    <div class="profile-avatar">MG</div>
+                </div>
+                <button class="refresh-btn" id="refresh-all">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Layout -->
+    <main class="dashboard-main">
+        <!-- Interactive Map Section (70% width) -->
+        <div class="map-section">
+            <div class="map-header">
+                <h2>City Issue Map</h2>
+                <div class="map-controls">
+                    <div class="view-toggles">
+                        <button class="toggle-btn active" data-layer="all">All Issues</button>
+                        <button class="toggle-btn" data-layer="critical">Critical Only</button>
+                        <button class="toggle-btn" data-layer="clusters">Clusters</button>
+                    </div>
+                    <div class="map-legend">
+                        <div class="legend-item">
+                            <div class="legend-pin pothole"></div>
+                            <span>Potholes</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-pin streetlight"></div>
+                            <span>Streetlights</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-pin trash"></div>
+                            <span>Trash/Sanitation</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-pin water-leak"></div>
+                            <span>Water Leaks</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-pin graffiti"></div>
+                            <span>Graffiti</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="interactive-map" id="city-map">
+                <!-- Simulated city map with pins -->
+                <div class="map-container">
+                    <div class="map-background">
+                        <div class="city-zones">
+                            <div class="zone downtown">Downtown</div>
+                            <div class="zone midtown">Midtown</div>
+                            <div class="zone uptown">Upper East</div>
+                            <div class="zone financial">Financial</div>
+                        </div>
+                        <!-- Issue pins will be dynamically placed here -->
+                        <div class="issue-pins" id="issue-pins"></div>
+                    </div>
+                    <div class="map-zoom-controls">
+                        <button class="zoom-btn" id="zoom-in">+</button>
+                        <button class="zoom-btn" id="zoom-out">-</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Sidebar (30% width) -->
+        <div class="reports-sidebar">
+            <div class="sidebar-header">
+                <h3>Incoming Reports</h3>
+                <div class="sidebar-stats">
+                    <span class="stat-badge">Total: <strong id="total-reports">2847</strong></span>
+                    <span class="stat-badge active">Active: <strong id="active-reports">89</strong></span>
+                </div>
+            </div>
+
+            <!-- Advanced Filtering System -->
+            <div class="filter-panel">
+                <div class="filter-header">
+                    <button class="filter-toggle" id="filter-toggle">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor" d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+                        </svg>
+                        Filters
+                    </button>
+                    <button class="clear-filters" id="clear-filters">Clear All</button>
+                </div>
+                <div class="filter-content" id="filter-content">
+                    <div class="filter-group">
+                        <label class="filter-label">Department</label>
+                        <select class="form-control" id="department-filter">
+                            <option value="">All Departments</option>
+                            <option value="public-works">Public Works (34)</option>
+                            <option value="sanitation">Sanitation (22)</option>
+                            <option value="electrical">Electrical Services (18)</option>
+                            <option value="water">Water Department (8)</option>
+                            <option value="parks">Parks & Recreation (7)</option>
+                            <option value="transportation">Transportation (12)</option>
+                            <option value="code">Code Enforcement (5)</option>
+                            <option value="building">Building & Safety (3)</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Status</label>
+                        <div class="multi-select">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="status-submitted" value="Submitted" checked>
+                                <label for="status-submitted">📋 Submitted</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="status-acknowledged" value="Acknowledged" checked>
+                                <label for="status-acknowledged">👀 Acknowledged</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="status-progress" value="In Progress" checked>
+                                <label for="status-progress">⏳ In Progress</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="status-emergency" value="Emergency Response" checked>
+                                <label for="status-emergency">🚨 Emergency</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Priority</label>
+                        <select class="form-control" id="priority-filter">
+                            <option value="">All Priorities</option>
+                            <option value="Critical">🚨 Critical</option>
+                            <option value="High">🔴 High</option>
+                            <option value="Medium">🟡 Medium</option>
+                            <option value="Low">🟢 Low</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Date Range</label>
+                        <div class="date-range">
+                            <input type="date" class="form-control date-input" id="date-from">
+                            <span class="date-separator">to</span>
+                            <input type="date" class="form-control date-input" id="date-to">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Location Search</label>
+                        <input type="text" class="form-control" id="location-search" placeholder="Search by address or area...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sorting Options -->
+            <div class="sort-panel">
+                <label class="sort-label">Sort by:</label>
+                <select class="form-control sort-select" id="sort-reports">
+                    <option value="urgency-desc">Urgency Score (High to Low)</option>
+                    <option value="date-desc">Date Submitted (Newest First)</option>
+                    <option value="date-asc">Date Submitted (Oldest First)</option>
+                    <option value="priority-desc">Priority (Critical First)</option>
+                    <option value="status">Status (Workflow Stage)</option>
+                    <option value="location">Location (Alphabetical)</option>
+                    <option value="department">Department</option>
+                </select>
+            </div>
+
+            <!-- Bulk Operations -->
+            <div class="bulk-operations">
+                <div class="bulk-header">
+                    <div class="bulk-select">
+                        <input type="checkbox" id="select-all">
+                        <label for="select-all">Select All</label>
+                    </div>
+                    <div class="bulk-actions hidden" id="bulk-actions">
+                        <button class="btn btn--sm btn--secondary bulk-btn" id="bulk-assign">Assign</button>
+                        <button class="btn btn--sm btn--secondary bulk-btn" id="bulk-status">Update Status</button>
+                        <button class="btn btn--sm btn--secondary bulk-btn" id="bulk-export">Export</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports List -->
+            <div class="reports-list" id="reports-list">
+                <!-- Reports will be populated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Detailed Report Modal -->
+    <div class="modal enhanced-modal hidden" id="report-detail-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3 id="modal-report-title">Report Details</h3>
+                <button class="modal-close" id="modal-close">×</button>
+            </div>
+            <div class="modal-body" id="modal-report-body">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <div class="modal-actions">
+                    <button class="btn btn--secondary" id="modal-export">Export Report</button>
+                    <button class="btn btn--primary" id="modal-update">Update Status</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assignment Modal -->
+    <div class="modal hidden" id="assignment-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Assign Report</h3>
+                <button class="modal-close" onclick="closeModal('assignment-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="assignment-form">
+                    <div class="form-group">
+                        <label class="form-label">Department</label>
+                        <select class="form-control" id="assign-department">
+                            <option value="">Select Department</option>
+                            <option value="public-works">Public Works</option>
+                            <option value="sanitation">Sanitation</option>
+                            <option value="electrical">Electrical Services</option>
+                            <option value="water">Water Department</option>
+                            <option value="parks">Parks & Recreation</option>
+                            <option value="transportation">Transportation</option>
+                            <option value="code">Code Enforcement</option>
+                            <option value="building">Building & Safety</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Staff Member</label>
+                        <select class="form-control" id="assign-staff" disabled>
+                            <option value="">Select staff member...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Priority Level</label>
+                        <select class="form-control" id="assign-priority">
+                            <option value="Low">🟢 Low</option>
+                            <option value="Medium">🟡 Medium</option>
+                            <option value="High">🔴 High</option>
+                            <option value="Critical">🚨 Critical</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Internal Notes</label>
+                        <textarea class="form-control" id="assign-notes" rows="3" placeholder="Add internal coordination notes..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--secondary" onclick="closeModal('assignment-modal')">Cancel</button>
+                <button class="btn btn--primary" id="confirm-assignment">Assign Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container">
+        <!-- Toasts will be inserted here -->
+    </div>
+
+    <!-- Live Updates Indicator -->
+    <div class="live-updates" id="live-updates">
+        <div class="update-indicator"></div>
+        <span>Live Updates</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
